@@ -32,22 +32,22 @@ WHERE
 	AND (
 		logstore_standard_log.eventname IN ( {{ extcond_none | join(', ') }} )
 		OR (
-			user1.username IN (
+			logstore_standard_log.eventname IN ( {{ extcond_username | join(', ') }} )
+			AND user1.username IN (
 				SELECT
 					username
 				FROM
 					course_student_username
 			)
-			AND logstore_standard_log.eventname IN ( {{ extcond_username | join(', ') }} )
 		)
 		OR (
-			user2.username IN (
+			logstore_standard_log.eventname IN ( {{ extcond_relatedusername | join(', ') }} )
+			AND user2.username IN (
 				SELECT
 					username
 				FROM
 					course_student_username
 			)
-			AND logstore_standard_log.eventname IN ( {{ extcond_relatedusername | join(', ') }} )
 		)
 	)
 	AND logstore_standard_log.timecreated BETWEEN %s AND %s
