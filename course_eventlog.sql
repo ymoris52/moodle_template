@@ -50,6 +50,6 @@ WHERE
 			AND logstore_standard_log.eventname IN ( {{ extcond_relatedusername | join(', ') }} )
 		)
 	)
-	AND logstore_standard_log.timecreated BETWEEN [EVENTLOG_FROM] AND [EVENTLOG_TO]
+	AND logstore_standard_log.timecreated BETWEEN %s AND %s
 ORDER BY
 	logstore_standard_log.id
