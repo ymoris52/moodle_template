@@ -22,7 +22,9 @@ WHERE
 	AND course_modules.module = modules.id
 	AND modules.name = 'resource'
 	AND context.id = files.contextid
+	AND files.filearea = 'content'
 	AND files.filename <> '.'
+	AND files.sortorder <> 0
 ORDER BY
 	course_sections.section,
 	resource.name
